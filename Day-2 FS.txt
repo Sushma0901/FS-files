@@ -1,0 +1,175 @@
+Write a program to read a string from the user and print the following pattern 
+
+Input - The input consists of one word
+Output - For the given input string print the pattern as shown in the test case
+
+Sample Test case
+
+input = hello
+output =
+h
+ee
+lll
+llll
+ooooo
+
+Explanation -
+The first line of output should print the first character once 
+followed by second character twice followed by third character thrice 
+till it reaches the end of string 
+
+input = welcome
+output =
+w
+ee
+lll
+cccc
+ooooo
+mmmmmm
+eeeeeee
+
+
+import java .util.*;
+class Test
+{
+    public static void main(String args [])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        for(int i=0;i<s.length();i++)
+        {
+            for(int j=0;j<=i;j++)
+            {
+                System.out.print(s.charAt(i));
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Bob has given a word which consists of numbers(0-9) and alphabets(a-z,A-Z)
+now he wants to add only numbers from the word. Pls help him to do so. 
+
+
+Sample Test Case - 1
+
+input = a2b3c4d5
+output = 14
+
+Explanation - 
+In the above test case we have 2,3,4,5 are the numbers so the addition of this numbers is 14 
+
+Sample Test Case - 2
+
+input = a10b20c30
+output = 60
+
+Explanation - 
+In the above test case we have 10,20,30. So the addition of this numbers is 60
+
+Sample Test Case-3
+
+input = k100
+output = 100
+
+Explanation -
+In the above test case we have 100 only. so the output is 100
+
+Sample Test Case - 4
+
+input = abc
+output = 0
+
+Explanation -
+Since no numbers print 0
+
+import java .util.*;
+class Test
+{
+    public static void main(String args [])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        for(int i=0;i<s.length();i++)
+        {
+            for(int j=0;j<=i;j++)
+            {
+                System.out.print(s.charAt(i));
+            }
+            System.out.println();
+        }
+    }
+}
+
+Suraj and Tom are two best friends. 
+
+Both of them have given two Strings S1 and S2 
+Suraj has given String S1 and Tom has given String S2
+Suraj is always bothered about Tom Strings and checks if's  his string follows sSequence of Tom strings or not 
+
+Help Suraj to solve his problem 
+
+A sSequence of  string is a new string which is formed from the original string by removing some (can be none) of the characters without
+disturbing the relative positions of the remaining characters. 
+
+
+Sample Test Case1
+
+input = abc
+ahbgdc
+output = true
+
+
+Sample Test Case2
+input = aik
+appkllli
+output = false
+
+Explanation - aik is not a subsequnece of appkllli 
+
+
+Sample Test Case3
+
+input = axc 
+ahbgdc
+output = false
+
+import java.util.*;
+public class Test
+{
+	public static void main(String[] args) {
+		//System.out.println("Hello World");
+		Scanner sc=new Scanner(System.in);
+		String s1=sc.next();
+		String s2=sc.next();
+		int x=0,c=0,f=0;
+		for(int i=0;i<s1.length();i++)
+		{
+		    for(int j=x;j<s2.length();j++)
+		    {
+		        if(s1.charAt(i)==s2.charAt(j))
+		        {
+		            x=j+1;
+		            c=c+1;
+		            break;
+		        }
+		        if(j==s2.length()-1)
+		        {
+		            f=1;
+		            break;
+		        }
+		    }
+		    if(f==1)
+		    break;
+		}
+		if(c==s1.length())
+		{
+		    System.out.println("true");
+		}
+		else
+		{
+		    System.out.println("false");
+		}
+	}
+}

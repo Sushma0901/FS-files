@@ -1,0 +1,90 @@
+Sunder and Shiva are playing a word game where shiva gives a number 'k' and word 'w' to the sunder and 
+sunder removes the first letter from the start and places it at the end(k times)
+
+
+Sample Test Case - 1
+input = 
+hello
+2
+output = 
+llohe
+
+
+Sample Test Case-2
+
+input = 
+good
+3
+output = dgoo
+
+import java.util.*;
+class Test
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        int n= sc.nextInt();
+        System.out.println(s.substring(n,s.length())+s.substring(0,n));
+    }
+}
+
+s=input()
+n=int(input())
+print(s[n:]+s[0:n])
+
+
+Tubby a UKG Student has given a group of letters and His madam asked to see if the group of 
+letters consists of every letter in the English Aplhabet(a-z/A-Z)
+
+print true if it contains else print false
+
+Note: The input can contain whitespaces.
+
+
+Sample Test Case -1 
+
+input =The quick brown fox jumps over the lazy dog 
+output = true 
+
+Explanation 
+The given input line Contains all the characters from ‘a’ to ‘z’ or 'A' to 'Z'
+ 
+
+Sample Test Case -2 
+
+input =ThequickBrownfoxjumpsOverThelazy doG 
+output = true 
+
+Explanation 
+The given input line Contains all the characters from ‘a’ to ‘z’ or 'A' to 'Z' 
+
+Sample Test Case - 3
+
+input =AbcEfghuIJkzlMnOpqrsTuvWxyD
+output = true
+
+Explanation 
+The given input line Contains all the characters from ‘a’ to ‘z’ or 'A' to 'Z' 
+
+
+import java.util.*;
+class Prgrm
+{
+    public static void main(String args[])
+    {
+      Scanner sc=new Scanner(System.in);
+      String s=sc.nextLine();
+      s=s.toLowerCase();
+      HashSet<Character>h=new HashSet<>();
+      for(int i=0;i<s.length();i++)
+        {
+        if(s.charAt(i)>=97 && s.charAt(i)<=122)
+            h.add(s.charAt(i));
+        }
+      if(h.size()==26)
+        System.out.println("true");
+      else
+        System.out.println("false");
+   }
+}
