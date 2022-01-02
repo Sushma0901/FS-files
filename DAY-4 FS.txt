@@ -1,0 +1,270 @@
+Write a java program to read a word as input and returns another string as output, 
+such that , a vowel in the input string will be de denoted by upper case letter ‘V’ and a 
+consonant in the input string will be denoted by upper case letter ‘C’. 
+
+Note - The output will contain a word containing alternating sequence of ‘C’ and ‘V’.
+It is not permissible to have two or more consecutive V or C in Sequence.
+Assume the Input String will contain only lower and upper case alphabets 
+
+input = hello 
+output = CVCV
+
+Explanation - When we convert the above  "hello" we have CVCCV 
+but for the output It is not permissible to have two or more consecutive V or C in Sequence.
+so CVCCV changes to CVCV 
+
+
+Sample Test Cases 
+
+input = aeibo
+output = VCV
+
+input = Whereabouts
+output = CVCVCVC
+             
+input = aeiou
+output = V
+
+input = BCDEFGIIKL
+output = CVCVC
+
+input = aeiOUabCdEfg
+output = VCVC
+
+
+import java.util.*;
+class Test
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        String str=s.toLowerCase();
+        char a[]=new char[str.length()];
+        for(int i=0;i<a.length;i++)
+        {
+            if(str.charAt(i)=='a'||str.charAt(i)=='e'||str.charAt(i)=='i'||str.charAt(i)=='o'||str.charAt(i)=='u')
+            {
+               a[i]='V'; 
+            }
+            else
+            {
+                a[i]='C';
+            }
+        }
+        char k=a[0];
+        System.out.print(k);
+        for(int i=1;i<a.length;i++)
+        {
+            if(a[i-1]!=a[i])
+            {
+                System.out.print(a[i]);
+            }
+        }
+    }
+}
+
+The online shopping portal is giving a buy-2 get-1 free discount.
+There are various categories of goods and the offer is valid on a group of items if they belong to the same category.
+All items in the same category are priced equal.
+So, If you buy 3 items of category A, you pay only for 2 items. 
+But if you buy 2 items of category A and 1 of category B, you pay for all 3 items. 
+Given the categories for various items in your shopping cart and the price for each category, 
+calculate the total price that you will have to pay.
+
+Input
+---------------------------------------------------------
+Each test case will contain two lines. 
+First line will be a string comprising of only alphabets (only upper case)
+Each character represents a category in the shop. 
+Next line will contain a space separated list of 26 integers where 1st integer 
+is price for category A, 
+2nd integer is price for category B and 26th integer is price for category Z.
+
+Output
+----------------------------------------------------------
+For each test case, print on a single line the price that the customer will 
+have to pay.
+
+
+input
+ABAAABBCDEZDF
+1 2 3 3 2 1 4 7 9 10 11 13 12 1 1 4 5 6 7 8 9 10 2 11 14 15
+output
+34
+
+Explanation :-
+A B C D E F G H I J  K  L  M  N O P Q R S T U V  W X  Y  Z
+1 2 3 3 2 1 4 7 9 10 11 13 12 1 1 4 5 6 7 8 9 10 2 11 14 15
+
+in the above input we have the frequency count of category as follows
+
+      I * P  =  Amount
+A-4 - 3 * 1  =   3
+B-3 - 2 * 2  =   4
+C-1 - 1 * 3  =   3
+D-2 - 2 * 3  =   6
+E-1 - 1 * 2  =   2
+F-1 - 1 * 1  =   1
+Z-1 - 1 * 15 =  15
+       Total  =  34
+
+if we buy two items we get one item free, so in 4 items of Category-A we have to bill only for 3 items 
+for Category B we have to bill only for 2 items. 
+
+In the above frequency I represents the Number of Items for each Category and P represent the cost  
+if we sum all of them we get the total price to be paid by the customer.
+
+
+input
+ZABCDBCADZZZRRRTTURTUTRASDERF
+17 5 3 3 2 1 4 7 19 10 1 3 2 1 1 4 5 6 7 8 9 1 2 1 4 12
+output
+168
+
+Explanation :-
+A  B C D E F G H I  J  K L M N O P Q R S T U V W X Y Z
+17 5 3 3 2 1 4 7 19 10 1 3 2 1 1 4 5 6 7 8 9 1 2 1 4 12
+
+in the above input we have the frequency count of category as follows
+      C *  P    AMOUNT
+Z-4 - 3 * 12  =  36
+A-3 - 2 * 17  =  34
+B-2 - 2 *  5  =  10
+C-2 - 2 *  3  =   6
+D-3 - 2 *  3  =   6
+R-6 - 4 *  6  =  24
+T-4 - 3 *  8  =  24
+U-2 - 2 *  9  =  18
+S-1 - 1 *  7  =   7
+E-1 - 1 *  2  =   2 
+F-1 - 1 *  1  =   1
+       TOTAL  = 168
+
+
+import java.util.*;
+class S
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        int arr[]=new int[26];
+        for(int i=0;i<26;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        //char []str=s.toCharArray();
+        HashMap<Character,Integer>a=new HashMap<Character,Integer>(); 
+        for(int i=0;i<s.length();i++)
+        {
+            if(!a.containsKey(s.charAt(i)))
+            {
+                a.put(s.charAt(i),1);
+            }
+            else
+            {
+                a.put(s.charAt(i),a.get(s.charAt(i))+1);
+            }
+        }
+        int c=0,k;
+        for(Map.Entry<Character,Integer> e : a.entrySet())
+        {
+            k=e.getValue();
+            int x;
+             if(k%3==0)
+             {
+                 x=2*(k/3);
+                 c=c+(x*arr[e.getKey()-'A']);
+                // System.out.println("IF "+c);
+             }
+             else
+             {
+                 x=(2*(k/3))+(k%3);
+                 c=c+(x*arr[e.getKey()-'A']);
+                 //System.out.println("ELSE "+c);
+             }
+        }
+        System.out.println(c);
+    }
+}
+
+write a program to read a line of words and return all the words vertically in the
+same order in which they appear  in line
+ 
+Words are returned as a list of strings, complete with spaces when is necessary. 
+(Trailing spaces are not allowed).
+
+Each word would be put on only one column and that in one column there will be only 
+one word.
+
+Print the string in Double Quotes like "HAY", "ORO"
+The line contains only upper case English letters.
+Assume that there is only one space between 2 words.
+
+
+ Sample Test Case-1
+ 
+input = HOW ARE YOU
+output = 
+"HAY"
+"ORO"
+"WEU"
+
+ Explanation: Each word is printed vertically. 
+HAY
+ORO
+WEU
+ 
+
+ Sample Test Case-2
+input  =TO BE OR NOT TO BE
+output = 
+"TBONTB"
+"OEROOE"
+"   T"
+
+ Explanation
+If the above words are written vertially we have the following words 
+"TBONTB"
+"OEROOE"
+"   T"
+ 
+ 
+Sample Test Case-3
+input =HELLO TO YOU
+output = 
+"HTY"
+"EOO"
+"L U"
+"L"
+"O"
+
+Sample Test Case-4
+input =ABC DEFG HIK
+output =
+"ADH"
+"BEI"
+"CFK"
+" G"
+
+Sample Test Case-5
+input = TOM LIKE CODER
+output =
+"TLC"
+"OIO"
+"MKD"
+" EE"
+"  R"
+
+ */
+
+s=input()
+w=s.split(' ')
+for i in range(len(max(w,key=len))):
+    for ww in w:
+        if i<len(ww):
+            print(ww[i],end='')
+        else:
+            print(' ',end='')
+    print('')
