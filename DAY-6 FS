@@ -287,3 +287,373 @@ System.out.println(-1);
 }
 }
 
+
+Due to vaccination is side effects in Europe, Few people turned as zombies.
+And other people fight againest zombies called as warriors to save their lives.
+
+You are given a list of integers strength[], represent the strength of the people.
+all the people running in same line with same speed.
+If the strength value is negative the person is a zombie running towards left,
+If the strength value is positive the person is a warrior running towards right.
+and the absolute value represents their strength.
+
+If a zombie and a warrior meet, the person with smallest strength will die. 
+If both have the same strength, both will die. 
+Two persons moving in the same direction will never meet.
+
+Your task is to find out the list of strengths of people who will be alive. 
+
+Input Format:
+-------------
+space separated integers, list of strength[].
+
+Output Format:
+--------------
+Print the list of strengths people who will be alive.
+
+
+Sample Input-1:
+---------------
+4 9 -5
+
+Sample Output-1:
+----------------
+4 9
+
+Explanation:
+------------
+The 9 and -5 meet resulting in 9. The 4 and 9 never meet.
+
+
+Sample Input-2:
+---------------
+-3 -2 2 3
+
+Sample Output-2:
+----------------
+-3 -2 2 3
+
+Explanation:
+------------
+The people with the strengths,
+-3 and -2 moving left, 3 and 2 moving right. No one will die.
+
+
+
+
+case =1
+input =5 10 -5
+output =5 10
+
+case =2
+input =10 2 -5
+output =10
+
+case =3
+input =-2 -1 1 2
+output =-2 -1 1 2
+
+case =4
+input =11 12 3 8 14 5 -10 -9 -12 10
+output =11 12 3 8 14 10
+
+case =5
+input =2 12 1 -12 -6 7 -13 15 7 12 11 6 15 -10 -9 13 11 4 -11 -5
+output =-6 -13 15 7 12 11 6 15 13
+
+
+*/
+
+import java.util.*;
+public class prog1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.nextLine();
+		String[] srr = s.split(" ");
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		for(int i=0;i<srr.length;i++) {
+			al.add(Integer.parseInt(srr[i]));
+		}
+		//ArrayList<Integer> al = new ArrayList<Integer>();
+		for(int i=0;i<al.size();i++) {
+			if(al.get(i)<0 && i>0) {
+				if(al.get(i-1)>0) {
+					if(al.get(i-1)-Math.abs(al.get(i))<0) {
+						al.remove(i-1);
+						i=0;
+						continue;
+					}
+					else if(al.get(i-1)-Math.abs(al.get(i))==0) {
+						al.remove(i);
+						al.remove(i-1);
+						i=0;
+						continue;
+					}
+					else {
+						al.remove(i);
+						i=0;
+						continue;
+					}
+				}
+			}
+		}
+		for(int i=0;i<al.size();i++) {
+			System.out.print(al.get(i)+" ");
+		}
+	}
+}
+
+
+
+
+
+Program-2
+
+
+Ramesh is given an task to the fill the numbers for a given square grid
+
+
+
+input = 3
+output =
+1  2  3                                                                                                                            
+8  9  4                                                                                                                            
+7  6  5
+
+the grid starts with 1 and increases as first row, last column, last row, first column similary with second row and so on 
+
+
+input = 2
+output =
+1  2                                                                                                                               
+4  3  
+
+input = 4
+output = 
+1 2 3 4                                                                                                                         
+12  13  14  5                                                                                                                      
+11  16  15  6                                                                                                                      
+10  9  8  7  
+
+
+Testcases
+
+case = 1
+input = 10
+output =
+1  2  3  4  5  6  7  8  9  10 
+36  37  38  39  40  41  42  43  44  11 
+35  64  65  66  67  68  69  70  45  12 
+34  63  84  85  86  87  88  71  46  13 
+33  62  83  96  97  98  89  72  47  14 
+32  61  82  95  100  99  90  73  48  15 
+31  60  81  94  93  92  91  74  49  16 
+30  59  80  79  78  77  76  75  50  17 
+29  58  57  56  55  54  53  52  51  18 
+28  27  26  25  24  23  22  21  20  19
+
+
+case = 2
+input = 8
+output =
+1  2  3  4  5  6  7  8 
+28  29  30  31  32  33  34  9 
+27  48  49  50  51  52  35  10 
+26  47  60  61  62  53  36  11 
+25  46  59  64  63  54  37  12 
+24  45  58  57  56  55  38  13 
+23  44  43  42  41  40  39  14 
+22  21  20  19  18  17  16  15 
+
+case = 3
+input = 6
+output = 
+1  2  3  4  5  6 
+20  21  22  23  24  7 
+19  32  33  34  25  8 
+18  31  36  35  26  9 
+17  30  29  28  27  10 
+16  15  14  13  12  11 
+
+
+case = 4
+input = 4
+output = 
+1 2 3 4                                                                                                                         
+12  13  14  5                                                                                                                      
+11  16  15  6                                                                                                                      
+10  9  8  7  
+
+
+import java.util.*;
+class second{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[][]=new int[n][n];
+        int x=1;
+        int y=n;
+        int a=0;
+        int b=0;
+        while(a<n && b<n){
+            for(int c=a;c<n;c++){
+                arr[a][c]=x;
+                x++;
+            }
+            for(int c=a+1;c<n;c++){
+                arr[c][n-1]=x;
+                x++;
+            }
+            if(a<=n){
+                for(int c=n-2;c>=b;c--){
+                    arr[n-1][c]=x;
+                    x++;
+                }
+            }
+            if(b<=n){
+                for(int c=n-2;c>a;c--){
+                    arr[c][b]=x;
+                    x++;
+                }
+            }
+            a++;
+            b++;
+            n--;
+        }
+        for(int c=0;c<y;c++){
+            for(int d=0;d<y;d++){
+                System.out.print(arr[c][d]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Program-3
+
+/*
+In a class of XII computer teacher asked one of the student to perform a task as practical session .
+
+There is a box contains N balls in it, each ball is printed with a positive integer.
+The teacher ask the student to split all the balls in the box into ball-groups, 
+each group should contain exatly S balls.
+
+The student has to pick the ball-groups as follows:
+	- the balls should be numbered consecutively.
+	e.g., 1,2 3, 4 or 4,5,6,7 etc.
+
+Finally, the student should say whether it is possible to 
+split all the balls in the box, into ball-groups accordingly.
+
+Now. its your task to help the student to find whether it is possible or not.
+if possible, print "true".
+otherwise, print "false".
+
+Input Format:
+-------------
+Line-1: Two integers N and S, number of balls and size of ball-group.
+Line-2: N space separated integers, integers printed on each ball.
+
+Output Format:
+--------------
+Print a boolean value, whether it is possible to split all the balls into groups.
+
+
+Sample Input-1:
+---------------
+8 4
+2 6 3 4 3 5 4 5
+
+Sample Output-1:
+----------------
+true
+
+Explanation:
+-------------
+Ball-groups are [2,3,4,5] and [3,4,5,6]
+
+
+Sample Input-2:
+---------------
+12 3
+12 2 9 5 3 4 13 7 6 8 11 7
+
+Sample Output-2:
+----------------
+true
+
+Explanation:
+-------------
+Ball-groups are [2,3,4], [5,6,7], [7,8,9] and [11,12,13]
+
+
+Sample Input-3:
+---------------
+6 3
+2 5 7 3 4 8
+
+Sample Output-3:
+----------------
+false
+
+Explanation:
+-------------
+you cannot form ball groups.
+
+case =1
+input =8 4
+2 6 3 4 3 5 4 5
+output =true
+
+case =2
+input =6 3
+2 5 7 3 4 8
+output =false
+
+case =3
+input =12 3
+12 2 9 5 3 4 13 7 6 8 11 7
+output =true
+
+case =4
+input =40 8
+4 5 6 7 8 9 10 71 72 73 74 75 52 53 54 55 56 57 58 59 76 77 78 91 90 89 87 86 88 85 84 11 12 33 34 35 36 37 38 38 40
+output =false
+
+
+sol:
+
+import java.util.*;
+public class Test{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        ArrayList<Integer> a=new ArrayList<Integer>();
+        ArrayList<Integer> b=new ArrayList<Integer>();
+        for(int i=0;i<n;i++){
+            a.add(sc.nextInt());
+        }
+        int z=n/m;
+        Collections.sort(a);
+        for(int i=0;i<z;i++){
+            int t=a.get(0);
+            for(int j=0;j<m;j++){
+                int temp=t+j;
+                if(a.contains(temp)){
+                    b.add(temp);
+                    a.remove(new Integer(temp));
+                }
+            } 
+            if(b.size()!=m){
+                System.out.println("false");
+                System.exit(0);
+            }
+            else{
+                b.clear();
+            }
+        }
+        System.out.println("true");
+    }
+}
