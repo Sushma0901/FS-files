@@ -1,0 +1,289 @@
+Program-1
+
+Christina has given a task to break his friends code 
+he will given all lower case alphabets  and code as the input 
+Christina has to figure the text from the code and display the text 
+
+Input - The first line of input consists of lower case alphabets and code 
+The first alphabet letter will given 01, second alphabet will be given 02, and so on 
+Output - Break the code and display the string 
+
+
+Sample Test Case - 1 
+input =
+abcdefghijklmnopqrstuvwxyz
+110525
+
+Explantion - 
+From the above test case we have 'a' has '01', 'b' has '02', and finally 'z' has '26' 
+where each alphabet will be assigned a two digit number 
+and for the code 110525 the characters will be 11 as 'k', 05 as 'e' and 25 as 'y' 
+so the output is "key" 
+
+Sample Test Case - 2
+input =
+qpwoeirutyalskdjfhgzmxncbv
+131013090521
+output = system
+
+
+Explantion - From the above test case we have 'q' as '01' , 'p' as '02' and finally 'v' as '26'
+and for the code 131013090521 we have the following code 
+13-s
+10-y
+13-s
+09-t
+05-e
+21-m
+
+so the output is system
+
+
+import java.util.*;
+class Test {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+     String str = sc.next(); 
+      char sArr[] = str.toCharArray();
+      String code = sc.next();
+      StringBuilder text = new StringBuilder();
+      for (int i=0; i<code.length(); i = i+2) {
+        Integer num = Integer.parseInt(code.substring(i,i+2));
+        text.append(sArr[num-1]);
+	  }
+      System.out.println(text.toString());
+    }
+  }
+
+
+
+==========================================================================
+
+
+
+Program-2
+
+/*
+Arjun is playing a word game in his tab.When he start the game , It displays a word and he has to check for any two adjacent characters which are same.
+If found he has to select those two characters by tapping, so that both characters will be deleted from the word and the word size shrinks by 2. 
+This process to be repeated until the word has no two adjacent characters are same.
+You task is to help Arjun to perform the above task and Return the final word obtained.
+
+
+
+Input Format:
+-------------
+Line-1: A string represents the word.
+
+Output Format:
+--------------
+Return a string or empty string.
+
+
+If empty string print -1
+
+Constraints:
+------------   
+    1 <= word.length <= 10^5   
+    word consists only lower case letters.
+
+Sample Input-1:
+---------------
+pqqprs
+
+Sample Output-1:
+----------------
+rs
+
+Explanation:
+-------------
+Initially , Delete two 'q's then the word will be 'pprs'. Now Delete two 'p's then the word will be rs.
+
+Sample Input-2:
+---------------
+pqqqprrs
+
+Sample Output-2:
+----------------
+pqps
+
+Explanation:
+-------------
+Initially , Delete two 'q's then the word will be 'pqprrs'. Now Delete two 'r's then the word will be pqps.
+
+
+*/
+
+import java.util.*;
+class Test5 {
+	 public String removeDuplicates(String S) {
+		    StringBuilder sb = new StringBuilder();
+		    int sbLength = 0;
+		    for(char character : S.toCharArray()) {
+		      if (sbLength != 0 && character == sb.charAt(sbLength - 1))
+		        sb.deleteCharAt(sbLength-- - 1);
+		      else {
+		        sb.append(character);
+		        sbLength++;
+		      }
+		    }
+		    return sb.toString();
+		  }
+	 
+public static void main(String[] args)
+    {
+    Scanner sc=new Scanner(System.in);
+      String str=sc.next();
+       
+       
+		   
+	   String str1 = new Test5().removeDuplicates(str);
+
+	   if(str1.length()!=0)
+          System.out.println(str1);
+	   else
+		   System.out.println(-1);
+      }  
+}
+
+
+
+
+
+==============================================================
+
+
+
+
+
+Program3
+
+Stanely a old grand father reads a news paper daily.
+While reading a newspaper his grandsone sits besides him. 
+His grandson is intresed in the puzzle given in the newspaper. 
+In the puzzle there will be few rows and columns which contains only alphabets and a new word will be given at the end. 
+we have to see if the word is present in the above given rows or columns and print the correspoind row and column index .
+Help Stanely and his grandsone to solve this. 
+
+
+assume the length of the word is <= rowsize/columnsize
+and the word may be present either vertically or horizontally
+
+if the word is not present print -1
+
+
+Sample Test Case
+input = 3 3
+a b c
+d e f
+g h i
+ef
+output = 
+1 1 1 2
+
+Explanation
+The word "ef" is found at index (1,1) and ends at (1,2)
+
+Sample Test Case-2
+input = 3 3
+a b c
+d e f
+g h i
+ghi
+output = 
+2 0 2 2
+
+Explanation
+The word "ghi" is found at index (2,0) and ends at (2,2)
+
+
+Sample Test Case-2
+input = 3 4
+a b c d
+d e f g
+g h i k
+fi
+output = 
+1 2 2 2
+
+Explanation
+The word "fi" is found at index (1,2) and ends at (2,2)
+
+
+Reading a Character Array from the user 
+char a[][]=new char[m][n];
+for(i=0;i<m;i++)
+for(j=0;j<n;j++)
+  a[i][j]=sc.next().charAt(0);
+
+Here a[][] is 2 dimensional character array 
+
+*/
+
+
+
+import java.util.*;
+class Test
+{
+	public static int returnStringIndexIfFound(String str1,String str2)
+	{
+	    int l1 = str1.length(); 
+        int l2 = str2.length(); 
+        int i,j;     
+
+        for ( i = 0; i <= l2 - l1; i++) 
+			{ 
+
+          for (j = 0; j < l1; j++) 
+                if (str2.charAt(i + j) != str1.charAt(j)) 
+						break;
+           if (j == l1) 
+				 	return i; 
+			} 
+      
+        return -1; 
+    } 
+
+	
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		int m=sc.nextInt();
+		int n=sc.nextInt();
+		char a[][]=new char[m][n];
+		for(int i=0;i<m;i++)
+		{
+			for(int j=0;j<n;j++){
+			a[i][j]=sc.next().charAt(0);
+			}
+		}
+		String str = sc.next();
+     StringBuilder sb ;
+	 int foundIndex=-1;
+	for(int i=0;i<m;i++)
+		{
+			sb=new StringBuilder();
+			for(int j=0;j<n;j++)
+			   sb.append(a[i][j]);
+			if((foundIndex = returnStringIndexIfFound(str,sb.toString()))>=0)
+			{
+				System.out.println(i+" "+foundIndex+" "+i+" "+(foundIndex+str.length()-1));
+			    return ;
+			}
+		}
+       for(int i=0;i<n;i++)
+		{
+			sb=new StringBuilder();
+			for(int j=0;j<m;j++){
+			   sb.append(a[j][i]);
+			if((foundIndex = returnStringIndexIfFound(str,sb.toString()))>=0)
+			{
+				System.out.println(foundIndex+" "+i+" "+i+" "+(foundIndex+str.length()-1));
+				 return;
+		}
+			}
+		}
+System.out.println(-1);
+}
+}
+
